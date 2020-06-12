@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Routes } from '../constants/routes';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Artikl } from '../model/Artikl';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ArtiklService {
   private readonly ARTIKL_URL = Routes.SERVER_URL+"/"+"Artikl";
+  dataChange: BehaviorSubject<Artikl[]> = new BehaviorSubject<Artikl[]>([]);
 
   constructor(private httpClient:HttpClient) { }
-  getAllArtikl()
-  {
-      return this.httpClient.get<Artikl[]>(this.ARTIKL_URL);
-  }
+  getAllArtikl(): Observable<Artikl[]> {
+    this.httpClient.get<Artikl[]>(this.ARTIKL_URL).subscribe(data => {
+        this.dataChange.next(data);
+    },
+        (error: HttpErrorResponse) => {
+            console.log(error.name + ' ' + error.message)
+        });
+        return this.dataChange.asObservable();
+}
   
   addArtikl(artikl:Artikl)
   {

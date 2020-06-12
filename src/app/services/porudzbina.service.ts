@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Porudzbina } from '../model/Porudzbina';
 import { Routes } from '../constants/routes';
 
@@ -9,11 +9,19 @@ import { Routes } from '../constants/routes';
 })
 export class PorudzbinaService {
   private readonly PORUDZBINA_URL = Routes.SERVER_URL+"/"+"Porudzbina";
+  dataChange: BehaviorSubject<Porudzbina[]> = new BehaviorSubject<Porudzbina[]>([]);
+
   constructor(private httpClient:HttpClient) { }
-  getAllPorudzbina()
-  {
-      return this.httpClient.get<Porudzbina[]>(this.PORUDZBINA_URL);
-  }
+
+  getAllPorudzbina(): Observable<Porudzbina[]> {
+    this.httpClient.get<Porudzbina[]>(this.PORUDZBINA_URL).subscribe(data => {
+        this.dataChange.next(data);
+    },
+        (error: HttpErrorResponse) => {
+            console.log(error.name + ' ' + error.message)
+        });
+        return this.dataChange.asObservable();
+}
   
   addPorudzbina(porudzbina:Porudzbina)
   {

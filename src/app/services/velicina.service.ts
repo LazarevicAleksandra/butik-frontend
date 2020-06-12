@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Routes } from '../constants/routes';
 import { Velicina } from '../model/Velicina';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VelicinaService {
   private readonly VELICINA_URL = Routes.SERVER_URL+"/"+"velicina";
+  dataChange: BehaviorSubject<Velicina[]> = new BehaviorSubject<Velicina[]>([]);
+
   constructor(private httpClient:HttpClient) { }
-  getAllVelicina()
-  {
-      return this.httpClient.get<Velicina[]>(this.VELICINA_URL);
-  }
+  
+  getAllVelicina(): Observable<Velicina[]> {
+    this.httpClient.get<Velicina[]>(this.VELICINA_URL).subscribe(data => {
+        this.dataChange.next(data);
+    },
+        (error: HttpErrorResponse) => {
+            console.log(error.name + ' ' + error.message)
+        });
+        return this.dataChange.asObservable();
+}
   
   addVelicina(velicina:Velicina)
   {

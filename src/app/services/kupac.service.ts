@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Routes } from '../constants/routes';
 import { Kupac } from '../model/Kupac';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class KupacService {
   private readonly KUPAC_URL = Routes.SERVER_URL+"Kupac";
+  dataChange: BehaviorSubject<Kupac[]> = new BehaviorSubject<Kupac[]>([]);
+
   constructor(private httpClient:HttpClient) { }
-  getAllKupac()
-  {
-      return this.httpClient.get<Kupac[]>(this.KUPAC_URL);
-  }
-  
+
+  getAllKupac(): Observable<Kupac[]> {
+    this.httpClient.get<Kupac[]>(this.KUPAC_URL).subscribe(data => {
+        this.dataChange.next(data);
+    },
+        (error: HttpErrorResponse) => {
+            console.log(error.name + ' ' + error.message)
+        });
+        return this.dataChange.asObservable();
+}
   addKupac(kupac:Kupac)
   {
       return this.httpClient.post(this.KUPAC_URL, kupac);
