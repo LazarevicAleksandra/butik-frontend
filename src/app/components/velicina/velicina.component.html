@@ -1,0 +1,53 @@
+<div class="w3-content" style="max-width:2500px;margin-top:63px">
+  <mat-toolbar color="w3-black">
+    <span class="title-center">Velicina</span>
+  </mat-toolbar>
+  
+  <div class="container mat-elevation-z8">
+      <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" matSort>
+      <ng-container matColumnDef="velicinaID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>velicinaID</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.velicinaID}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="naziv">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Naziv</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.naziv}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="oznaka">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>oznaka</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.oznaka}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="broj">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>broj</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.broj}}</mat-cell>
+      </ng-container>
+  
+      <!-- actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" (click)="openDialog(1)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-header-cell>
+  
+        <mat-cell *matCellDef="let row; let i=index;">
+          <button mat-icon-button color="primary" (click)="openDialog(2, row.velicinaID, row.naziv, row.oznaka,row.broj)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="primary" (click)="openDialog(3, row.velicinaID, row.naziv,  row.oznaka,row.broj)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row style="cursor: default" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>

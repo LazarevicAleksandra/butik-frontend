@@ -30,8 +30,8 @@ export class ArtiklService {
       return this.httpClient.put(this.ARTIKL_URL+"/"+artikl.artiklID,artikl);
   }
 
-  deleteArtikl(artikl: Artikl) {
-      return this.httpClient.delete(this.ARTIKL_URL+"/"+artikl.artiklID);
+  deleteArtikl(artiklID: number) {
+      return this.httpClient.delete(this.ARTIKL_URL+"/"+artiklID);
   }
 
   getArtiklID(artiklID:number) : Observable<Artikl>

@@ -1,0 +1,28 @@
+<div class="w3-content" style="max-width:2500px;margin-top:63px">
+  <mat-toolbar color="w3-black">
+    <span class="title-center">Poruceni artikli</span>
+  </mat-toolbar>
+  
+  <div class="container mat-elevation-z8">
+      <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" matSort>
+      <ng-container matColumnDef="porudzbinaID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>porudzbinaID</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.porudzbinaID}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="artiklID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>artiklID</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.artiklID}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="kolicina">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>kolicina</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.kolicina}}</mat-cell>
+      </ng-container>
+  
+    </mat-table>
+  </div>
+</div>
