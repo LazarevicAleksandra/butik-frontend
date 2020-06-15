@@ -5,7 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
 import { PorudzbinaService } from 'src/app/services/porudzbina.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-porudzbina',
@@ -14,6 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PorudzbinaComponent implements OnInit {
 
+ 
+  displayedColumns = ['porudzbinaID', 'kupacID', 'brojZaPracenje','datumPorudzbine','datumIsporuke','stanje'];
   dataSource: MatTableDataSource<Porudzbina>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -21,7 +22,7 @@ export class PorudzbinaComponent implements OnInit {
 
  
 
-  constructor(public httpClient: HttpClient, public porudzbinaService: PorudzbinaService, public dialog: MatDialog) { }
+  constructor(public httpClient: HttpClient, public porudzbinaService: PorudzbinaService) { }
 
   ngOnInit() {
     this.loadData();

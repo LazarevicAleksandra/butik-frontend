@@ -20,14 +20,13 @@ export class PorudzbinaartiklService {
         });
         return this.dataChange.asObservable();
 }
-  
-  addPorudzbinaArtikl(porudzbinaartikl:PorudzbinaArtikl)
-  {
-      return this.httpClient.post(this.PORUDZBINAARTIKL_URL, porudzbinaartikl);
+public addPorudzbinaArtikl(porudzbinaartikl: PorudzbinaArtikl): void {
+    this.httpClient.post(this.PORUDZBINAARTIKL_URL, porudzbinaartikl).subscribe();
   }
+ 
 
-  deletePorudzbinaArtikl(porudzbinaartikl: PorudzbinaArtikl) {
-      return this.httpClient.delete(this.PORUDZBINAARTIKL_URL+"/"+porudzbinaartikl.porudzbinaID);
+  public deletePorudzbina(porudzbinaartikl: PorudzbinaArtikl): void {
+    this.httpClient.delete(this.PORUDZBINAARTIKL_URL +"/"+ porudzbinaartikl.porudzbinaID).subscribe();
   }
 
   getPorudzbinaArtiklID(porudzbinaID:number) : Observable<PorudzbinaArtikl>

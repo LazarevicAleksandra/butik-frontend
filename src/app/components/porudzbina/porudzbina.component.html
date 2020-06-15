@@ -9,33 +9,39 @@
         </mat-form-field>
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" matSort>
       <ng-container matColumnDef="porudzbinaID">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>porudzbinaID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.porudzbinaID}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="kupacID">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>kupacID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Kupac</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.kupacID}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="brojZaPracenje">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>brojZaPracenje</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.brojZaPracenje}}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Broj za pracenje</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.brojZaPracenje}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="datumPorudzbine">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>datumPorudzbine</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.datumPorudzbine}}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Datum Porudzbine</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.datumPorudzbine}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="datumIsporuke">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>datumIsporuke</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.datumIsporuke}}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Datum Isporuke</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.datumIsporuke}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="stanje">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>stanje</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.stanje}}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Stanje</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.stanje}}</mat-cell>
       </ng-container>
-  
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row style="cursor: default" *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
-  </div>
+  <mat-paginator [length]="100"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+</div>
 </div>

@@ -13,7 +13,7 @@ export class VelicinaService {
 
   constructor(private httpClient:HttpClient) { }
   
-  getAllVelicina(): Observable<Velicina[]> {
+ public getAllVelicina(): Observable<Velicina[]> {
     this.httpClient.get<Velicina[]>(this.VELICINA_URL).subscribe(data => {
         this.dataChange.next(data);
     },
@@ -23,21 +23,18 @@ export class VelicinaService {
         return this.dataChange.asObservable();
 }
   
-  addVelicina(velicina:Velicina)
-  {
-      return this.httpClient.post(this.VELICINA_URL, velicina);
+public addVelicina(velicina: Velicina): void {
+    this.httpClient.post(this.VELICINA_URL, velicina).subscribe();
+  }
+ 
+  public updateVelicina(velicina: Velicina): void {
+    this.httpClient.put(this.VELICINA_URL+"/"+velicina.velicinaID,velicina).subscribe();
   }
 
-  updateVelicina(velicina: Velicina)
-  {
-      return this.httpClient.put(this.VELICINA_URL+"/"+velicina.velicinaID,velicina);
+  public deleteVelicina(velicina: Velicina): void {
+    this.httpClient.delete(this.VELICINA_URL+"/"+velicina.velicinaID).subscribe();
   }
-
-  deleteVelicina(velicina: Velicina) {
-      return this.httpClient.delete(this.VELICINA_URL+"/"+velicina.velicinaID);
-  }
-
-  getVelicinaID(velicinaID:number) : Observable<Velicina>
+  public getVelicinaID(velicinaID:number) : Observable<Velicina>
   {
       return this.httpClient.get<Velicina>(this.VELICINA_URL+"/"+velicinaID);
   }

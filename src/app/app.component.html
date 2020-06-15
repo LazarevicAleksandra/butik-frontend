@@ -18,10 +18,10 @@
         <a href="home/#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
       </div>
     </div>
-    <div *ngIf="1" class="w3-dropdown-hover w3-hide-small">
+    <div  class="w3-dropdown-hover w3-hide-small">
       <button  class="w3-padding-large w3-button" title="Artikl">ARTIKL <i class="fa fa-caret-down"></i></button>     
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a mat-icon [routerLink]="['artikl']" class="w3-bar-item w3-button w3-padding-large">ARTIKL</a>
+        <a mat-list-item  [routerLink]="['artikl']" class="w3-bar-item w3-button w3-padding-large">ARTIKL</a>
         <a mat-list-item [routerLink]="['marka']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">MARKA</a>
         <a mat-list-item [routerLink]="['model']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">MODEL</a>
         <a mat-list-item [routerLink]="['velicina']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">VELICINA</a>
@@ -29,12 +29,21 @@
       </div>
     </div>
     <div class="w3-dropdown-hover w3-hide-small">
-      <button class="w3-padding-large w3-button" title="MojNalog">NALOG <i class="fa fa-caret-down"></i></button>     
+      <button class="w3-padding-large w3-button" title="MojNalog">PREGLED <i class="fa fa-caret-down"></i></button>     
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a  mat-list-item [routerLink]="['signin']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SIGN IN</a>
-        <a  mat-list-item [routerLink]="['login']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOG IN</a>
+        <a  mat-list-item [routerLink]="['racun']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RACUN</a>
+        <a  mat-list-item [routerLink]="['porudzbina']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PORUDZBINA</a>
       </div>
     </div>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="MojNalog">NALOG <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a  mat-list-item [routerLink]="['login']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOG IN</a>
+        <a  mat-list-item [routerLink]="['kupac']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">KUPAC</a>
+        <a  mat-list-item [routerLink]="['radnik']" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RADNIK</a>
+      </div>
+    </div>
+    
   </div>
 </div>
 <router-outlet ></router-outlet>

@@ -6,12 +6,12 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class KupacService {
-  private readonly KUPAC_URL = Routes.SERVER_URL+"Kupac";
+  private readonly KUPAC_URL = Routes.SERVER_URL+"/Kupac";
   dataChange: BehaviorSubject<Kupac[]> = new BehaviorSubject<Kupac[]>([]);
 
   constructor(private httpClient:HttpClient) { }
 
-  getAllKupac(): Observable<Kupac[]> {
+ public getAllKupac(): Observable<Kupac[]> {
     this.httpClient.get<Kupac[]>(this.KUPAC_URL).subscribe(data => {
         this.dataChange.next(data);
     },
@@ -20,21 +20,18 @@ export class KupacService {
         });
         return this.dataChange.asObservable();
 }
-  addKupac(kupac:Kupac)
-  {
-      return this.httpClient.post(this.KUPAC_URL, kupac);
+public addKupac(kupac: Kupac): void {
+    this.httpClient.post(this.KUPAC_URL, kupac).subscribe();
+  }
+ 
+  public updateKupac(kupac: Kupac): void {
+    this.httpClient.put(this.KUPAC_URL+"/"+kupac.kupacID,kupac).subscribe();
   }
 
-  updateKupac(kupac: Kupac)
-  {
-      return this.httpClient.put(this.KUPAC_URL,kupac);
+  public deleteKupac(kupac: Kupac): void {
+    this.httpClient.delete(this.KUPAC_URL+"/"+kupac.kupacID).subscribe();
   }
-
-  deleteKupac(kupac: Kupac) {
-      return this.httpClient.delete(this.KUPAC_URL+kupac.kupacID);
-  }
-
-  getKupacID(kupacID:number) : Observable<Kupac>
+ public getKupacID(kupacID:number) : Observable<Kupac>
   {
       return this.httpClient.get<Kupac>(this.KUPAC_URL+kupacID);
   }

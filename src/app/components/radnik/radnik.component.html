@@ -1,0 +1,66 @@
+
+<div class="w3-content" style="max-width:2500px;margin-top:63px">
+    <mat-toolbar color="w3-black">
+     <span class="title-center">Kupac</span>
+   </mat-toolbar>
+   
+   <div class="container mat-elevation-z8">
+     <mat-form-field>
+       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+     </mat-form-field>
+     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" matSort>
+      
+       <ng-container matColumnDef="radnikID">
+         <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+         <mat-cell *matCellDef="let row">{{row.radnikID}}</mat-cell>
+       </ng-container>
+    
+       <ng-container matColumnDef="brojLicneKarte">
+         <mat-header-cell *matHeaderCellDef mat-sort-header>Broj licne karte </mat-header-cell>
+         <mat-cell *matCellDef="let row"> {{row.brojLicneKarte}}</mat-cell>
+       </ng-container>
+       
+       <ng-container matColumnDef="email">
+         <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+         <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
+       </ng-container>
+       <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.username}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="password">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Password</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.password}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="roleID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.roleID}}</mat-cell>
+      </ng-container>
+       <!-- actions -->
+       <ng-container matColumnDef="actions">
+         <mat-header-cell *matHeaderCellDef>
+           <button mat-icon-button color="primary" (click)="openDialog(1)">
+             <mat-icon>add</mat-icon>
+           </button>
+         </mat-header-cell>
+    
+         <mat-cell *matCellDef="let row; let i=index;">
+           <button mat-icon-button color="primary" (click)="openDialog(2, row.radnikID, row.brojLicneKarte, row.email,row.username,row.password,row.roleID)">
+             <mat-icon aria-label="Edit">edit</mat-icon>
+           </button>
+    
+           <button mat-icon-button color="primary" (click)="openDialog(3,row.radnikID, row.brojLicneKarte,  row.email,row.username,row.password,row.roleID)">
+             <mat-icon aria-label="Delete">delete</mat-icon>
+           </button>
+         </mat-cell>
+       </ng-container>
+   
+       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+       <mat-row style="cursor: default" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+     </mat-table>
+     <mat-paginator [length]="100"
+     [pageSize]="10"
+     [pageSizeOptions]="[5, 10, 25, 100]">
+   </mat-paginator>
+   </div>
+   </div>

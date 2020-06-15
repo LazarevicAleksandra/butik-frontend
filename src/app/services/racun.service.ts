@@ -11,7 +11,7 @@ export class RacunService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getAllRacun(): Observable<Racun[]> {
+  public getAllRacun(): Observable<Racun[]> {
     this.httpClient.get<Racun[]>(this.RACUN_URL).subscribe(data => {
         this.dataChange.next(data);
     },
@@ -20,22 +20,19 @@ export class RacunService {
         });
         return this.dataChange.asObservable();
 }
-  
-  addRacun(racun:Racun)
-  {
-      return this.httpClient.post(this.RACUN_URL, racun);
+public addRacun(racun: Racun): void {
+    this.httpClient.post(this.RACUN_URL, racun).subscribe();
+  }
+ 
+  public updateRacun(racun: Racun): void {
+    this.httpClient.put(this.RACUN_URL+"/"+racun.racunID,racun).subscribe();
   }
 
-  updateRacun(racun: Racun)
-  {
-      return this.httpClient.put(this.RACUN_URL+"/"+racun.racunID,racun);
+  public deleteRacun(racun: Racun): void {
+    this.httpClient.delete(this.RACUN_URL+"/"+racun.racunID).subscribe();
   }
 
-  deleteRacun(racun: Racun) {
-      return this.httpClient.delete(this.RACUN_URL+"/"+racun.racunID);
-  }
-
-  getRacunID(racunID:number) : Observable<Racun>
+  public getRacunID(racunID:number) : Observable<Racun>
   {
       return this.httpClient.get<Racun>(this.RACUN_URL+"/"+racunID);
   }

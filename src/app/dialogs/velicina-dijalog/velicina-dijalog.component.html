@@ -1,26 +1,21 @@
 <div class="container">
-    <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje smera</h3>
-    <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija smera</h3>
-    <h3 mat-dialog-title *ngIf="flag == 3">Brisanje smera</h3>
+    <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje velicine</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija velicine</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Brisanje velicine</h3>
     <form class="mat-dialog-content" #formControl="ngForm">
       <div class="form">
         <mat-form-field>
-          <input matInput placeholder="suma" [(ngModel)]="data.suma" name="suma" [disabled]="flag==3" required>
+          <input matInput placeholder="naziv" [(ngModel)]="data.naziv" name="naziv" [disabled]="flag==3" required>
         </mat-form-field>
       </div>
       <div class="form">
         <mat-form-field>
-          <input matInput placeholder="datum" [(ngModel)]="data.datum" name="datum" [disabled]="flag==3" required>
+          <input matInput placeholder="oznaka" [(ngModel)]="data.oznaka" name="oznaka" [disabled]="flag==3" required>
         </mat-form-field>
       </div>
       <div class="form">
         <mat-form-field>
-          <input matInput placeholder="porudzbinaID" [(ngModel)]="data.porudzbinaID" name="porudzbinaID" [disabled]="flag==3" required>
-        </mat-form-field>
-      </div>
-      <div class="form">
-        <mat-form-field>
-          <input matInput placeholder="radnikID" [(ngModel)]="data.radnikID" name="radnikID" [disabled]="flag==3" required>
+          <input matInput placeholder="broj" [(ngModel)]="data.broj" name="broj" [disabled]="flag==3" required>
         </mat-form-field>
       </div>
     

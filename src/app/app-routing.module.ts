@@ -10,6 +10,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ArtiklComponent } from './components/artikl/artikl.component';
+import { KupacComponent } from './components/kupac/kupac.component';
+import { RadnikComponent } from './components/radnik/radnik.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,9 @@ const routes: Routes = [
   {path: 'porudzbina', component: PorudzbinaComponent},
   {path: 'porudzbinaartikl', component: PorudzbinaartiklComponent},
   {path: 'racun', component: RacunComponent},
-  {path: 'velicina', component: VelicinaComponent}
+  {path: 'velicina', component: VelicinaComponent},
+  {path: 'kupac', component: KupacComponent},
+  {path: 'radnik', component: RadnikComponent}
 
 ];
 

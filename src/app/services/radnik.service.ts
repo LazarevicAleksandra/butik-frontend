@@ -13,7 +13,7 @@ export class RadnikService {
 
   constructor(private httpClient:HttpClient) { }
   
-  getAllRadnik(): Observable<Radnik[]> {
+  public getAllRadnik(): Observable<Radnik[]> {
     this.httpClient.get<Radnik[]>(this.RADNIK_URL).subscribe(data => {
         this.dataChange.next(data);
     },
@@ -22,21 +22,19 @@ export class RadnikService {
         });
         return this.dataChange.asObservable();
 }
-  addRadnik(radnik:Radnik)
-  {
-      return this.httpClient.post(this.RADNIK_URL, radnik);
+public addRadnik(radnik: Radnik): void {
+    this.httpClient.post(this.RADNIK_URL, radnik).subscribe();
+  }
+ 
+  public updateRadnik(radnik: Radnik): void {
+    this.httpClient.put(this.RADNIK_URL+"/"+radnik.radnikID,radnik).subscribe();
   }
 
-  updateRadnik(radnik: Radnik)
-  {
-      return this.httpClient.put(this.RADNIK_URL+"/"+radnik.radnikID,radnik);
+  public deleteRadnik(radnik: Radnik): void {
+    this.httpClient.delete(this.RADNIK_URL+"/"+ radnik.radnikID).subscribe();
   }
 
-  deleteRadnik(radnik: Radnik) {
-      return this.httpClient.delete(this.RADNIK_URL+"/"+radnik.radnikID);
-  }
-
-  getRadnikID(radnikID:number) : Observable<Radnik>
+  public getRadnikID(radnikID:number) : Observable<Radnik>
   {
       return this.httpClient.get<Radnik>(this.RADNIK_URL+"/"+radnikID);
   }

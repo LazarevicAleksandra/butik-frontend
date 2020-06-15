@@ -1,0 +1,59 @@
+<div class="container">
+    <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje kupca</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija kupca</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Brisanje kupca</h3>
+    <form class="mat-dialog-content" #formControl="ngForm">
+      <div class="form">
+        <mat-form-field>
+          <input matInput placeholder="brojTelefona" [(ngModel)]="data.brojTelefona" name="brojTelefona" [disabled]="flag==3" required>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field>
+            <input matInput placeholder="adresa" [(ngModel)]="data.adresa" name="adresa" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="postanskiBroj" [(ngModel)]="data.postanskiBroj" name="postanskiBroj" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="grad" [(ngModel)]="data.grad" name="grad" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="ime" [(ngModel)]="data.ime" name="ime" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="email" [(ngModel)]="data.email" name="email" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="username" [(ngModel)]="data.username" name="username" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="password" [(ngModel)]="data.password" name="password" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="roleID" [(ngModel)]="data.roleID" name="roleID" [disabled] required>
+          </mat-form-field>
+      </div>
+
+      <div mat-dialog-actions>
+        <button mat-button *ngIf="flag == 1"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="add()">Sačuvaj</button>
+        <button mat-button *ngIf="flag == 2"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="update()">Sačuvaj</button>
+        <button mat-button *ngIf="flag == 3"  [mat-dialog-close]="1" (click)="delete()">Obriši</button>
+        <button mat-button (click)="cancel()" tabindex="-1">Poništi</button>
+      </div>
+    </form>
+   </div>

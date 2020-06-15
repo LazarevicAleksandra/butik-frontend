@@ -8,7 +8,7 @@ import { LoginRequest } from '../dto/login-request';
 
 @Injectable()
 export class LoginService {
-  private readonly AUTH_URL = Routes.SERVER_URL + '/login';
+  private readonly AUTH_URL = Routes.SERVER_URL + '/Login';
 
     private logged = new BehaviorSubject(false);
     isLoggedIn = this.logged.asObservable();
@@ -21,7 +21,7 @@ export class LoginService {
   }
 
   public login(loginRequest: LoginRequest) {
-      return this.httpClient.post<LoginResponse>(this.AUTH_URL+"login", loginRequest);
+      return this.httpClient.post<LoginResponse>(this.AUTH_URL, loginRequest);
   }
 
   isKupacLoggedIn():boolean

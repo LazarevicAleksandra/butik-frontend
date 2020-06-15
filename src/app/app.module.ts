@@ -48,6 +48,10 @@ import { ModelDijalogComponent } from './dialogs/model-dijalog/model-dijalog.com
 import { VelicinaDijalogComponent } from './dialogs/velicina-dijalog/velicina-dijalog.component';
 import { RacunDijalogComponent } from './dialogs/racun-dijalog/racun-dijalog.component'
 import { MarkaDijalogComponent } from './dialogs/marka-dijalog/marka-dijalog.component';
+import { KupacComponent } from './components/kupac/kupac.component';
+import { RadnikComponent } from './components/radnik/radnik.component';
+import { KupacDijalogComponent } from './dialogs/kupac-dijalog/kupac-dijalog.component';
+import { RadnikDijalogComponent } from './dialogs/radnik-dijalog/radnik-dijalog.component';
 
 
 
@@ -72,7 +76,11 @@ import { MarkaDijalogComponent } from './dialogs/marka-dijalog/marka-dijalog.com
     VelicinaDijalogComponent,
     RacunDijalogComponent,
     ModelDijalogComponent,
-    RacunDijalogComponent
+    RacunDijalogComponent,
+    KupacComponent,
+    RadnikComponent,
+    KupacDijalogComponent,
+    RadnikDijalogComponent
   
   ],
   imports: [
@@ -95,7 +103,7 @@ import { MarkaDijalogComponent } from './dialogs/marka-dijalog/marka-dijalog.com
     MatInputModule,
     NoopAnimationsModule
   ],
-  entryComponents: [ArtiklDijalogComponent, BarkodDijalogComponent, MarkaDijalogComponent,  ModelDijalogComponent,RacunDijalogComponent,VelicinaDijalogComponent],
+  entryComponents: [ArtiklDijalogComponent, BarkodDijalogComponent, MarkaDijalogComponent,  ModelDijalogComponent,RacunDijalogComponent,VelicinaDijalogComponent,RadnikDijalogComponent,KupacDijalogComponent],
 
   providers: [ MatDialog,ArtiklService,BarkodService,KupacService,MarkaService,ModelService,PorudzbinaService,
               PorudzbinaartiklService,RacunService,RadnikService,VelicinaService,LoginService,StorageService,SnackBarService,],

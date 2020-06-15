@@ -9,26 +9,26 @@
         </mat-form-field>
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" matSort>
       <ng-container matColumnDef="racunID">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>racunID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.racunID}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="suma">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>suma</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Suma</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.suma}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="datum">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>datum</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.datum}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="porudzbinaID">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>porudzbinaID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Porudzbina</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.porudzbinaID}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="radnikID">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>radnikID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Radnik</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.radnikID}}</mat-cell>
       </ng-container>
   
@@ -55,5 +55,9 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row style="cursor: default" *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+     <mat-paginator [length]="100"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
   </div>
 </div>

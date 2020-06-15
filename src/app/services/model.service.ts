@@ -11,7 +11,7 @@ export class ModelService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getAllModel(): Observable<Model[]> {
+  public getAllModel(): Observable<Model[]> {
     this.httpClient.get<Model[]>(this.MODEL_URL).subscribe(data => {
         this.dataChange.next(data);
     },
@@ -21,21 +21,19 @@ export class ModelService {
         return this.dataChange.asObservable();
 }
   
-  addModel(model:Model)
-  {
-      return this.httpClient.post(this.MODEL_URL, model);
+public addModel(model: Model): void {
+    this.httpClient.post(this.MODEL_URL, model).subscribe();
+  }
+ 
+  public updateModel(model: Model): void {
+    this.httpClient.put(this.MODEL_URL+"/"+model.modelID,model).subscribe();
   }
 
-  updateModel(model: Model)
-  {
-      return this.httpClient.put(this.MODEL_URL+"/"+model.modelID,model);
+  public deleteModel(model: Model): void {
+    this.httpClient.delete(this.MODEL_URL+"/"+model.modelID).subscribe();
   }
 
-  deleteModel(model: Model) {
-      return this.httpClient.delete(this.MODEL_URL+"/"+model.modelID);
-  }
-
-  getModelID(modelID:number) : Observable<Model>
+  public getModelID(modelID:number) : Observable<Model>
   {
       return this.httpClient.get<Model>(this.MODEL_URL+"/"+modelID);
   }

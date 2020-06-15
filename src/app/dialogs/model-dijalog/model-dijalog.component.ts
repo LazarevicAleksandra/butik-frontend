@@ -1,7 +1,7 @@
 import { ModelService } from './../../services/model.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-model-dijalog',
@@ -11,7 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ModelDijalogComponent implements OnInit {
   public flag: number;
 
-  constructor(public snackBar: MatSnackBar,
+  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ModelDijalogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public modelService: ModelService) { }

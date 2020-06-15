@@ -17,9 +17,7 @@ import {MatInput} from '@angular/material/input';
 export class ArtiklDijalogComponent implements OnInit {
 public flag: Number;
 
-private velicina:Velicina;
-
-constructor( private velicinaService:VelicinaService,public snackBar: MatSnackBar,
+constructor(public snackBar: MatSnackBar,
   public dialogRef: MatDialogRef<ArtiklDijalogComponent>,
   @Inject(MAT_DIALOG_DATA) public data: Artikl,
   public artiklService: ArtiklService
@@ -42,7 +40,7 @@ public update(): void {
 }
 
 public delete(): void {
-  this.artiklService.deleteArtikl(this.data.artiklID);
+  this.artiklService.deleteArtikl(this.data);
   this.snackBar.open("Uspešno obrisan artikl", "U redu", { duration: 2000 });
 }
 

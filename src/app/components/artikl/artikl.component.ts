@@ -6,6 +6,7 @@ import { ArtiklDijalogComponent } from 'src/app/dialogs/artikl-dijalog/artikl-di
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
  selector: 'app-artikl',
@@ -16,12 +17,12 @@ export class ArtiklComponent implements OnInit {
  displayedColumns = [ 'artiklID', 'velicinaID', 'barKodID','dostupno', 'cena','modelID', 'markaID', 'tip', 'actions'];
  dataSource: MatTableDataSource<Artikl>;
 
-
+ @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  velicina: import("c:/Users/Aleksandra/Documents/aleksandra/butik-frontend/front/src/app/model/Velicina").Velicina[];
+ 
 
 
- constructor(public artiklService: ArtiklService, public dialog: MatDialog,public  velicinaService: VelicinaService) { }
+ constructor(public artiklService: ArtiklService, public dialog: MatDialog) { }
 
  ngOnInit() {
    this.loadData();
@@ -32,6 +33,7 @@ export class ArtiklComponent implements OnInit {
   this.artiklService.getAllArtikl().subscribe(data => {
     this.dataSource = new MatTableDataSource(data);
 
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   });
 }
@@ -47,5 +49,10 @@ export class ArtiklComponent implements OnInit {
        
    });
  }
+ applyFilter(filterValue: string){
+  filterValue = filterValue.trim();
+  filterValue = filterValue.toLocaleLowerCase();
+  this.dataSource.filter = filterValue;
+}
 
 }

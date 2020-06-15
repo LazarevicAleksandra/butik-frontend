@@ -12,7 +12,7 @@ export class BarkodService {
 
   constructor(private httpClient:HttpClient) { }
   
-  getAllBarKod(): Observable<BarKod[]> {
+ public getAllBarKod(): Observable<BarKod[]> {
     this.httpClient.get<BarKod[]>(this.BARKOD_URL).subscribe(data => {
         this.dataChange.next(data);
     },
@@ -21,21 +21,20 @@ export class BarkodService {
         });
         return this.dataChange.asObservable();
 }
-  addBarKod(barkod:BarKod)
-  {
-      return this.httpClient.post(this.BARKOD_URL, barkod);
+ public addBarKod(barKod: BarKod): void {
+    this.httpClient.post(this.BARKOD_URL, barKod).subscribe();
+  }
+ 
+  public updateBarKod(barKod: BarKod): void {
+    this.httpClient.put(this.BARKOD_URL+"/"+barKod.barKodID,barKod).subscribe();
   }
 
-  updateBarKod(barkod: BarKod)
-  {
-      return this.httpClient.put(this.BARKOD_URL+"/"+barkod.barKodID,barkod);
+  public deleteBarKod(barKod: BarKod): void {
+    this.httpClient.delete(this.BARKOD_URL+"/"+barKod.barKodID).subscribe();
   }
 
-  deleteBarKod(barkod: BarKod) {
-      return this.httpClient.delete(this.BARKOD_URL+"/"+barkod.barKodID);
-  }
 
-  getBarKodID(barKodID:number) : Observable<BarKod>
+  public getBarKodID(barKodID:number) : Observable<BarKod>
   {
       return this.httpClient.get<BarKod>(this.BARKOD_URL+"/"+barKodID);
   }

@@ -1,0 +1,41 @@
+<div class="container">
+    <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje radnika</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija radnika</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Brisanje radnika</h3>
+    <form class="mat-dialog-content" #formControl="ngForm">
+      <div class="form">
+        <mat-form-field>
+          <input matInput placeholder="brojLicneKarte" [(ngModel)]="data.brojLicneKarte" name="brojLicneKarte" [disabled]="flag==3" required>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field>
+            <input matInput placeholder="email" [(ngModel)]="data.email" name="email" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="username" [(ngModel)]="data.username" name="username" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="password" [(ngModel)]="data.password" name="password" [disabled]="flag==3" required>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field>
+            <input matInput placeholder="roleID" [(ngModel)]="data.roleID" name="roleID" [disabled] required>
+          </mat-form-field>
+      </div>
+
+    
+      
+      <div mat-dialog-actions>
+        <button mat-button *ngIf="flag == 1"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="add()">Sačuvaj</button>
+        <button mat-button *ngIf="flag == 2"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="update()">Sačuvaj</button>
+        <button mat-button *ngIf="flag == 3"  [mat-dialog-close]="1" (click)="delete()">Obriši</button>
+        <button mat-button (click)="cancel()" tabindex="-1">Poništi</button>
+      </div>
+    </form>
+   </div>

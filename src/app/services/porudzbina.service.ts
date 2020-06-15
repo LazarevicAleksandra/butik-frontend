@@ -13,7 +13,7 @@ export class PorudzbinaService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getAllPorudzbina(): Observable<Porudzbina[]> {
+  public getAllPorudzbina(): Observable<Porudzbina[]> {
     this.httpClient.get<Porudzbina[]>(this.PORUDZBINA_URL).subscribe(data => {
         this.dataChange.next(data);
     },
@@ -23,21 +23,20 @@ export class PorudzbinaService {
         return this.dataChange.asObservable();
 }
   
-  addPorudzbina(porudzbina:Porudzbina)
-  {
-      return this.httpClient.post(this.PORUDZBINA_URL, porudzbina);
+public addPorudzbina(porudzbina: Porudzbina): void {
+    this.httpClient.post(this.PORUDZBINA_URL, porudzbina).subscribe();
+  }
+ 
+  public updatePorudzbina(porudzbina: Porudzbina): void {
+    this.httpClient.put(this.PORUDZBINA_URL+"/"+porudzbina.porudzbinaID,porudzbina).subscribe();
   }
 
-  updatePorudzbina(porudzbina: Porudzbina)
-  {
-      return this.httpClient.put(this.PORUDZBINA_URL+"/"+porudzbina.porudzbinaID,porudzbina);
+  public deletePorudzbina(porudzbina: Porudzbina): void {
+    this.httpClient.delete(this.PORUDZBINA_URL+"/"+ porudzbina.porudzbinaID).subscribe();
   }
 
-  deletePorudzbina(porudzbina: Porudzbina) {
-      return this.httpClient.delete(this.PORUDZBINA_URL+"/"+porudzbina.porudzbinaID);
-  }
 
-  getPorudzbinaID(porudzbinaID:number) : Observable<Porudzbina>
+ public getPorudzbinaID(porudzbinaID:number) : Observable<Porudzbina>
   {
       return this.httpClient.get<Porudzbina>(this.PORUDZBINA_URL+"/"+porudzbinaID);
   }

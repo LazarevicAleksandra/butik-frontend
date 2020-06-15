@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Routes } from '../constants/routes';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Artikl } from '../model/Artikl';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Artikl } from '../model/Artikl';
 
 @Injectable()
 export class ArtiklService {
@@ -10,7 +10,7 @@ export class ArtiklService {
   dataChange: BehaviorSubject<Artikl[]> = new BehaviorSubject<Artikl[]>([]);
 
   constructor(private httpClient:HttpClient) { }
-  getAllArtikl(): Observable<Artikl[]> {
+ public getAllArtikl(): Observable<Artikl[]> {
     this.httpClient.get<Artikl[]>(this.ARTIKL_URL).subscribe(data => {
         this.dataChange.next(data);
     },
@@ -20,21 +20,19 @@ export class ArtiklService {
         return this.dataChange.asObservable();
 }
   
-  addArtikl(artikl:Artikl)
-  {
-      return this.httpClient.post(this.ARTIKL_URL, artikl);
+public addArtikl(artikl: Artikl): void {
+    this.httpClient.post(this.ARTIKL_URL, artikl).subscribe();
+  }
+ 
+  public updateArtikl(artikl: Artikl): void {
+    this.httpClient.put(this.ARTIKL_URL+"/"+artikl.artiklID,artikl).subscribe();
   }
 
-  updateArtikl(artikl: Artikl)
-  {
-      return this.httpClient.put(this.ARTIKL_URL+"/"+artikl.artiklID,artikl);
+  public deleteArtikl(artikl: Artikl): void {
+    this.httpClient.delete(this.ARTIKL_URL+"/"+artikl.artiklID).subscribe();
   }
 
-  deleteArtikl(artiklID: number) {
-      return this.httpClient.delete(this.ARTIKL_URL+"/"+artiklID);
-  }
-
-  getArtiklID(artiklID:number) : Observable<Artikl>
+ public getArtiklID(artiklID:number) : Observable<Artikl>
   {
       return this.httpClient.get<Artikl>(this.ARTIKL_URL+"/"+artiklID);
   }
